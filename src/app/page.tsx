@@ -7,8 +7,8 @@ export default function Home() {
 
   const platforms = [
     {
-      id: 'diamond-rock',
-      name: 'Diamond Rock',
+      id: 'dhan',
+      name: 'Dhan',
       image: '/dr.png',
       bgColor: 'from-emerald-500 to-emerald-700',
       glowColor: 'from-emerald-400 via-emerald-500 to-emerald-600'
@@ -55,7 +55,16 @@ export default function Home() {
       {/* Full page glow effect when hovering */}
       {hoveredPlatform !== null && (
         <div 
-          className={`absolute inset-0 bg-gradient-to-br ${platforms[hoveredPlatform]?.glowColor} opacity-20 transition-all duration-700 ease-out`}
+          className="absolute inset-0 transition-all duration-700 ease-out"
+          style={{
+            background: platforms[hoveredPlatform]?.id === 'dhan' 
+              ? 'radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 30%, transparent 70%)'
+              : platforms[hoveredPlatform]?.id === 'options-trader'
+              ? 'radial-gradient(circle at center, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 30%, transparent 70%)'
+              : platforms[hoveredPlatform]?.id === 'trading-view'
+              ? 'radial-gradient(circle at center, rgba(100, 116, 139, 0.1) 0%, rgba(100, 116, 139, 0.05) 30%, transparent 70%)'
+              : 'radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 30%, transparent 70%)'
+          }}
         />
       )}
 
@@ -77,34 +86,84 @@ export default function Home() {
             {platforms.map((platform, index) => (
               <div
                 key={platform.id}
-                className="flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
+                className="flex flex-col items-center justify-center cursor-pointer transition-all duration-500 ease-out"
                 onMouseEnter={() => setHoveredPlatform(index)}
                 onMouseLeave={() => setHoveredPlatform(null)}
               >
                 {/* Platform image container */}
                 <div 
                   className={`
-                    w-24 h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center
-                    transition-all duration-300 ease-out border
+                    w-32 h-32 md:w-36 md:h-36 rounded-2xl flex items-center justify-center
+                    transition-all duration-500 ease-out relative
                     ${hoveredPlatform === index 
-                      ? `bg-gradient-to-br ${platform.bgColor} shadow-2xl scale-110 border-white/30 shadow-${platform.glowColor.split('-')[1]}-500/50` 
-                      : 'bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 hover:border-white/20'
+                      ? `scale-105` 
+                      : 'scale-100'
                     }
                   `}
+                  style={{
+                    background: hoveredPlatform === index 
+                      ? platform.id === 'dhan' 
+                        ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                        : platform.id === 'options-trader'
+                        ? 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)'
+                        : platform.id === 'trading-view'
+                        ? 'linear-gradient(135deg, #475569 0%, #334155 100%)'
+                        : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)'
+                      : platform.id === 'dhan' 
+                        ? 'linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(4, 120, 87, 0.25) 100%)'
+                        : platform.id === 'options-trader'
+                        ? 'linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(109, 40, 217, 0.25) 100%)'
+                        : platform.id === 'trading-view'
+                        ? 'linear-gradient(135deg, rgba(71, 85, 105, 0.15) 0%, rgba(51, 65, 85, 0.25) 100%)'
+                        : 'linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(29, 78, 216, 0.25) 100%)',
+                    border: hoveredPlatform === index 
+                      ? platform.id === 'dhan' 
+                        ? '2px solid #10b981'
+                        : platform.id === 'options-trader'
+                        ? '2px solid #a855f7'
+                        : platform.id === 'trading-view'
+                        ? '2px solid #64748b'
+                        : '2px solid #3b82f6'
+                      : platform.id === 'dhan' 
+                        ? '2px solid rgba(16, 185, 129, 0.3)'
+                        : platform.id === 'options-trader'
+                        ? '2px solid rgba(168, 85, 247, 0.3)'
+                        : platform.id === 'trading-view'
+                        ? '2px solid rgba(100, 116, 139, 0.3)'
+                        : '2px solid rgba(59, 130, 246, 0.3)',
+                    boxShadow: hoveredPlatform === index 
+                      ? platform.id === 'dhan' 
+                        ? '0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+                        : platform.id === 'options-trader'
+                        ? '0 0 30px rgba(168, 85, 247, 0.5), 0 0 60px rgba(168, 85, 247, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+                        : platform.id === 'trading-view'
+                        ? '0 0 30px rgba(100, 116, 139, 0.5), 0 0 60px rgba(100, 116, 139, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+                        : '0 0 30px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2)'
+                      : platform.id === 'dhan' 
+                        ? '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(16, 185, 129, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+                        : platform.id === 'options-trader'
+                        ? '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(168, 85, 247, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+                        : platform.id === 'trading-view'
+                        ? '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(100, 116, 139, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+                        : '0 4px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(59, 130, 246, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.1)'
+                  }}
                 >
                   <img
                     src={platform.image}
                     alt={platform.name}
                     className={`
-                      w-12 h-12 md:w-14 md:h-14 object-contain transition-all duration-300
+                      w-16 h-16 md:w-20 md:h-20 object-contain transition-all duration-500
                       ${hoveredPlatform === index 
-                        ? 'filter brightness-0 invert scale-110' 
-                        : 'filter brightness-0 invert opacity-70'
+                        ? 'scale-110 brightness-110 filter drop-shadow-lg' 
+                        : 'opacity-90 brightness-100'
                       }
                     `}
                     onError={(e) => {
                       console.log(`Error loading image: ${platform.image}`);
-                      // Don't hide the image, just log the error
+                      console.log('Image element:', e.target);
+                    }}
+                    onLoad={() => {
+                      console.log(`Successfully loaded image: ${platform.image}`);
                     }}
                   />
                 </div>
@@ -112,9 +171,9 @@ export default function Home() {
                 {/* Platform name */}
                 <span 
                   className={`
-                    mt-5 text-white font-medium transition-all duration-300 text-center
+                    mt-4 text-white font-medium transition-all duration-500 text-center text-lg
                     ${hoveredPlatform === index 
-                      ? 'text-white scale-105 opacity-100 font-semibold' 
+                      ? 'text-white scale-105 opacity-100 font-semibold brightness-110' 
                       : 'opacity-80'
                     }
                   `}
