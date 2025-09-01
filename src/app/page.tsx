@@ -186,7 +186,15 @@ export default function Home() {
         </div>
 
         {/* Made for Trade watermark */}
-        <span className="absolute bottom-8 right-8 text-white/30 text-sm font-light tracking-wider">
+        <span 
+          className="absolute bottom-8 right-8 text-sm font-light tracking-wider"
+          style={{
+            color: 'transparent',
+            WebkitTextStroke: '1px rgba(255, 255, 255, 0.4)',
+            textStroke: '1px rgba(255, 255, 255, 0.4)',
+            fontWeight: '300'
+          }}
+        >
           #MadeForTrade
         </span>
       </div>
